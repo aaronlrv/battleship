@@ -1,3 +1,55 @@
+let field = [
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+  "x",
+];
+
 function ships(name, coordinates) {
   return {
     name: name,
@@ -14,4 +66,4 @@ function ships(name, coordinates) {
   };
 }
 
-export { ships };
+export { field, ships };
