@@ -50,20 +50,32 @@ let field = [
   "49",
 ];
 
-function ships(name, coordinates) {
-  return {
-    name: name,
-    coordinates: [coordinates],
-    length() {
-      console.log(coordinates);
-      ships.coordinates.forEach((element) => {
-        let lengthValue = 0;
-        length++;
-        length: lengthValue;
-        console.log(length);
-      });
-    },
-  };
+class ships {
+  constructor(name, coordinates, length) {
+    this.name = name;
+    this.coordinates = coordinates;
+    this.length = length;
+    this.hp = length;
+  }
+
+  hit() {
+    if (hp === 0) {
+      return "ship has already been sunk";
+    } else {
+      hp--;
+    }
+    return length;
+  }
+
+  sunk() {
+    if (hp === 0) {
+      return "ship has sunk";
+    }
+  }
 }
 
-export { field, ships };
+function gameboard() {
+  return {};
+}
+
+export { field, ships, gameboard };
