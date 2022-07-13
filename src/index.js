@@ -13,9 +13,10 @@ console.log(ship1.coordinates);
 console.log(ship1.coordinates[0]);
 
 ship1.coordinates[0].forEach((element) => {
-  element = "s";
+  let index = logic.field.indexOf(element);
+  console.log(index);
 
-  console.log(element);
+  logic.field[index] = "p";
 });
 
-console.log(field);
+console.log(logic.field);
