@@ -13,11 +13,10 @@ let field = [
 ];
 
 class ships {
-  constructor(id, coordinates, length, orientation) {
+  constructor(id, coordinates, length) {
     this.id = id;
     this.coordinates = coordinates;
     this.length = length;
-    this.orientation = orientation;
     this.hp = coordinates;
   }
 
