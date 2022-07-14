@@ -18,35 +18,45 @@ class ships {
     this.coordinates = coordinates;
     this.length = length;
     this.orientation = orientation;
-    this.hp = [coordinates];
+    this.hp = coordinates;
   }
 
   hit() {
-    console.log(hp); /// shift each one of hp array if array is 0 it has sunk
+    let hp = this.hp;
+    if (hp.length === 0) {
+      this.sink();
+    }
+    console.log(hp);
+    console.log(this.hp);
+    let health = 0;
+
+    let hurt = hp.shift();
+
+    hp.forEach((element) => {
+      element;
+
+      health++;
+    });
+    console.log(hp);
+    console.log(health);
+    return health;
   }
 
   sunk() {
-    console.log("sunk");
+    return "ship has sunk"; /// figure this out later
   }
 
   gameboardPosition() {
     let arr = this.coordinates;
     arr.forEach((element) => {
-      console.log(element);
       let split = element.split("");
       let row = split[0];
-      console.log(row);
 
       let column = split[1];
-      console.log(column);
       let finalRow = row.toUpperCase();
-      console.log(finalRow);
       let ans = finalRow.charCodeAt() - 65;
-      console.log(ans);
       field[ans][column] = "p";
     });
-
-    console.log(field);
   }
 }
 
