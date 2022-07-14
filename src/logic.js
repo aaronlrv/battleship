@@ -54,7 +54,7 @@ class ships {
       let column = split[1];
       let finalRow = row.toUpperCase();
       let ans = finalRow.charCodeAt() - 65;
-      field[ans][column] = "p";
+      field[ans][column] = this.id;
     });
   }
 }
