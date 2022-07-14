@@ -13,26 +13,40 @@ let field = [
 ];
 
 class ships {
-  constructor(name, coordinates, length) {
-    this.name = name;
+  constructor(id, coordinates, length, orientation) {
+    this.id = id;
     this.coordinates = coordinates;
     this.length = length;
-    this.hp = length;
+    this.orientation = orientation;
+    this.hp = [coordinates];
   }
 
   hit() {
-    if (hp === 0) {
-      return "ship has already been sunk";
-    } else {
-      hp--;
-    }
-    return hp;
+    console.log(hp); /// shift each one of hp array if array is 0 it has sunk
   }
 
   sunk() {
-    if (hp === 0) {
-      return "ship has sunk";
-    }
+    console.log("sunk");
+  }
+
+  gameboardPosition() {
+    let arr = this.coordinates;
+    arr.forEach((element) => {
+      console.log(element);
+      let split = element.split("");
+      let row = split[0];
+      console.log(row);
+
+      let column = split[1];
+      console.log(column);
+      let finalRow = row.toUpperCase();
+      console.log(finalRow);
+      let ans = finalRow.charCodeAt() - 65;
+      console.log(ans);
+      field[ans][column] = "p";
+    });
+
+    console.log(field);
   }
 }
 
