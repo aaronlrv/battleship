@@ -55,12 +55,27 @@ class ships {
       let finalRow = row.toUpperCase();
       let ans = finalRow.charCodeAt() - 65;
       field[ans][column] = this.id;
+      console.log(field);
     });
   }
 }
 
-function gameboard() {
-  return {};
-}
+class gameboard {
+  constructor(coordinates, id) {
+    this.id = id;
+    this.coordinates = coordinates;
+  }
+  gameboardPosition() {
+    let arr = this.coordinates;
+    arr.forEach((element) => {
+      let split = element.split("");
+      let row = split[0];
 
+      let column = split[1];
+      let finalRow = row.toUpperCase();
+      let ans = finalRow.charCodeAt() - 65;
+      field[ans][column] = this.id;
+    });
+  }
+}
 export { field, ships, gameboard };
