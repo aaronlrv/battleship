@@ -47,21 +47,29 @@ class ships {
 }
 
 class gameboard {
-  constructor(coordinates, id) {
+  constructor(coordinates, id, length) {
     this.id = id;
     this.coordinates = coordinates;
+    this.length = length;
   }
   gameboardPosition() {
     let arr = this.coordinates;
-    arr.forEach((element) => {
-      let split = element.split("");
-      let row = split[0];
+    console.log(arr);
+    let split = arr.split("");
+    console.log(split);
+    let row = split[0];
 
-      let column = split[1];
-      let finalRow = row.toUpperCase();
-      let ans = finalRow.charCodeAt() - 65;
-      field[ans][column] = this.id;
-    });
+    let column = split[1];
+    let finalRow = row.toUpperCase();
+    let ans = finalRow.charCodeAt() - 65;
+    console.log(ans);
+
+    for (let i = ans; i <= this.length; i++) {
+      /// places it vertically
+      field[i][column] = this.id;
+      console.log(i);
+    }
   }
 }
+
 export { field, ships, gameboard };
