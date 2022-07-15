@@ -47,10 +47,11 @@ class ships {
 }
 
 class gameboard {
-  constructor(coordinates, id, length) {
+  constructor(coordinates, id, length, orientation) {
     this.id = id;
     this.coordinates = coordinates;
     this.length = length;
+    this.orientation = orientation;
   }
   gameboardPosition() {
     let arr = this.coordinates;
@@ -64,10 +65,20 @@ class gameboard {
     let ans = finalRow.charCodeAt() - 65;
     console.log(ans);
 
-    for (let i = ans; i <= this.length; i++) {
-      /// places it horizontally
-      field[ans][i] = this.id;
-      console.log(i);
+    if (this.orientation === "Vertical") {
+      for (let i = ans; i <= this.length; i++) {
+        /// places it vertically
+        field[i][column] = this.id;
+        console.log(i);
+      }
+    } else if (this.orientation === "Horizontal") {
+      for (let i = ans; i <= this.length; i++) {
+        /// places it horizontally
+        field[ans][i] = this.id;
+        console.log(i);
+      }
+    } else {
+      return "Error orientation is incorrect";
     }
   }
 }
