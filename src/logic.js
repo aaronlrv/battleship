@@ -65,8 +65,8 @@ class gameboard {
     console.log(ans);
 
     for (let i = ans; i <= this.length; i++) {
-      /// places it vertically
-      field[i][column] = this.id;
+      /// places it horizontally
+      field[ans][i] = this.id;
       console.log(i);
     }
   }
