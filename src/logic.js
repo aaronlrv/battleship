@@ -44,20 +44,6 @@ class ships {
   sunk() {
     return "ship has sunk"; /// figure this out later
   }
-
-  gameboardPosition() {
-    let arr = this.coordinates;
-    arr.forEach((element) => {
-      let split = element.split("");
-      let row = split[0];
-
-      let column = split[1];
-      let finalRow = row.toUpperCase();
-      let ans = finalRow.charCodeAt() - 65;
-      field[ans][column] = this.id;
-      console.log(field);
-    });
-  }
 }
 
 class gameboard {
