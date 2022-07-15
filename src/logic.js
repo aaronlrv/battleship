@@ -65,14 +65,14 @@ class gameboard {
     let ans = finalRow.charCodeAt() - 65;
     console.log(ans);
 
-    if (this.orientation === "Vertical") {
-      for (let i = ans; i <= this.length; i++) {
+    if (this.orientation === "vertical") {
+      for (let i = ans - 1; i <= this.length; i++) {
         /// places it vertically
         field[i][column] = this.id;
         console.log(i);
       }
-    } else if (this.orientation === "Horizontal") {
-      for (let i = ans; i <= this.length; i++) {
+    } else if (this.orientation === "horizontal") {
+      for (let i = ans - 1; i <= this.length; i++) {
         /// places it horizontally
         field[ans][i] = this.id;
         console.log(i);
