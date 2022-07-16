@@ -4,12 +4,13 @@
 
 import * as logic from "./logic.js";
 
-let ship = new logic.ships("name", logic.field[1][1], 3);
+let ship = new logic.ships("name", logic.field[1][1], 3, "vertical");
 console.log(ship.length);
 
 let variable = ship;
 console.log(variable.length);
-console.log(variable.coordinate);
+console.log(variable.start);
+console.log(variable.orientation);
 
 let gameboard = new logic.gameboard();
 gameboard.gameboardPosition(ship);
