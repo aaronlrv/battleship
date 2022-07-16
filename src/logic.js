@@ -85,16 +85,18 @@ class gameboard {
     if (orientation === "vertical") {
       for (let i = ans; i <= length; i++) {
         /// places it vertically
-        board[i][column - 1] = name;
-        console.log("For Name:", name);
+        board[i][column - 1] = variable;
+        console.log("For Name:", variable);
         console.log("I:", i);
         console.log("Board:", board);
       }
     } else if (variable.orientation === "horizontal") {
       for (let i = ans; i <= length; i++) {
         /// places it horizontally
-        board[ans][i] = name;
-        return board;
+        board[ans][i] = variable;
+        console.log("For Name:", variable);
+        console.log("I:", i);
+        console.log("Board:", board);
       }
     } else {
       return "Error orientation is incorrect";
