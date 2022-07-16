@@ -63,13 +63,44 @@ class gameboard {
     ];
   }
 
-  gameboardPosition(ship) {
+  gameboardPosition(ship, gameboard) {
+    let board = gameboard.board;
     let variable = ship;
-    console.log(variable);
-    console.log(variable.length);
 
-    variable.length = length;
+    let length = variable.length;
+    let orientation = variable.orientation;
+    let start = variable.start;
+    let name = variable.name;
 
+    let split = start.split("");
+
+    let row = split[0];
+    let column = split[1];
+
+    let finalRow = row.toUpperCase();
+    let ans = finalRow.charCodeAt() - 65;
+    console.log("Answer:", ans);
+    console.log("Length:", length);
+
+    if (orientation === "vertical") {
+      for (let i = ans; i <= length; i++) {
+        /// places it vertically
+        board[i][column - 1] = name;
+        console.log("For Name:", name);
+        console.log("I:", i);
+        console.log("Board:", board);
+      }
+    } else if (variable.orientation === "horizontal") {
+      for (let i = ans; i <= length; i++) {
+        /// places it horizontally
+        board[ans][i] = name;
+        return board;
+      }
+    } else {
+      return "Error orientation is incorrect";
+    }
+    console.log(board);
+    return board;
     // for (let index = 0; index < array.length; index++) {
     //   ///place ships based on ship length
     // }
@@ -84,13 +115,13 @@ class gameboard {
     // let ans = finalRow.charCodeAt() - 65;
     // console.log(ans);
 
-    // if (this.orientation === "vertical") {
+    // // if (this.orientation === "vertical") {
     //   for (let i = ans; i <= this.length; i++) {
     //     /// places it vertically
     //     field[i][column - 1] = this.id;
     //     console.log(i);
     //   }
-    // } else if (this.orientation === "horizontal") {
+    // // } else if (this.orientation === "horizontal") {
     //   for (let i = ans; i <= this.length; i++) {
     //     /// places it horizontally
     //     field[ans][i] = this.id;
