@@ -81,19 +81,16 @@ class gameboard {
     let ans = finalRow.charCodeAt() - 65;
     console.log("Answer:", ans);
     console.log("Length:", length);
-
+    console.log("Final Row:", finalRow);
     if (orientation === "vertical") {
       for (let i = ans; i <= length; i++) {
         /// places it vertically
         board[i][column - 1] = variable;
-        console.log("For Name:", variable);
-        console.log("I:", i);
-        console.log("Board:", board);
       }
     } else if (variable.orientation === "horizontal") {
       for (let i = ans; i <= length; i++) {
         /// places it horizontally
-        board[ans][i] = variable;
+        board[column - 1][i] = variable;
         console.log("For Name:", variable);
         console.log("I:", i);
         console.log("Board:", board);
