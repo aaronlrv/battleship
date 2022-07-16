@@ -1,17 +1,29 @@
-/// coordinates will be an array
+/// make ship a one coord input
+///  you dont need ships to identify themselves
+/// if a ship gets hit, it turns red or sumn long term. No ship needs to know when its destroyed themselves
+
 import * as logic from "./logic.js";
 
-let ship1 = new logic.ships(
-  "p",
-  [logic.field[1][1], logic.field[1][2], logic.field[1][3]],
-  3
-);
+let ship = new logic.ships("name", logic.field[1][1], 3);
+console.log(ship.length);
 
-console.log(ship1);
-console.log(logic.ships);
-console.log(ship1.coordinates);
-console.log(ship1.coordinates[0]);
-ship1.gameboardPosition();
+let variable = ship;
+console.log(variable.length);
+console.log(variable.coordinate);
+
+let gameboard = new logic.gameboard();
+gameboard.gameboardPosition(ship);
+
+/* the current state of mutated board for tests
+let gameboard2 = new logic.gameboard(logic.field[1][1], "poo", 3, "horizontal");
+gameboard2.gameboardPosition();
+
+let gameboard = new logic.gameboard(logic.field[2][3], "poo", 3, "vertical");
+gameboard.gameboardPosition();
+*/
+
+console.table(gameboard);
+
 /*
 ship1.coordinates.forEach((k) => {
   /// loops through coords
