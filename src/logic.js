@@ -22,23 +22,13 @@ class ships {
 
   hit() {
     let hp = this.hp;
-    if (hp.length === 0) {
+    if (hp === 0) {
       this.sink();
+    } else {
+      hp--;
     }
     console.log(hp);
-    console.log(this.hp);
-    let health = 0;
-
-    let hurt = hp.shift();
-
-    hp.forEach((element) => {
-      element;
-
-      health++;
-    });
-    console.log(hp);
-    console.log(health);
-    return health;
+    return hp;
   }
 
   sunk() {
