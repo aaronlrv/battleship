@@ -6,18 +6,18 @@ beforeEach(() => {
   console.log(field);
 });
 
-test("test sink function", () => {
+test.skip("test sink function", () => {
   let ship1 = new logic.ships("p", field[1][1], 3);
   expect(ship1.sunk()).toBe("ship has sunk");
 });
 
-test("test hit function", () => {
+test.skip("test hit function", () => {
   let ship1 = new logic.ships("p", field[1][1], 3);
 
   expect(ship1.hit()).toBe(2);
 });
 
-test("test gameboard function vertical", () => {
+test.skip("test gameboard function vertical", () => {
   let ship = new logic.ships("ship", logic.field[1][1], 3, "vertical");
   let variable = ship;
 
@@ -90,7 +90,7 @@ test("test gameboard function vertical", () => {
   ]);
 });
 
-test("test gameboard function horizontal", () => {
+test.skip("test gameboard function horizontal", () => {
   let ship2 = new logic.ships("ship2", logic.field[1][1], 3, "horizontal");
   let gameboard = new logic.gameboard();
   gameboard.gameboardPosition(ship2, gameboard);
@@ -139,7 +139,7 @@ test("test gameboard function horizontal", () => {
   ]);
 });
 
-test("gameboard function with high co-ordinates vertical", () => {
+test.skip("gameboard function with high co-ordinates vertical", () => {
   let ship = new logic.ships("ship", logic.field[7][1], 3, "vertical");
   let variable = ship;
 
@@ -212,7 +212,7 @@ test("gameboard function with high co-ordinates vertical", () => {
   ]);
 });
 
-test("gameboard function with high co-ordinates horizontal", () => {
+test.skip("gameboard function with high co-ordinates horizontal", () => {
   let ship2 = new logic.ships("ship2", logic.field[6][6], 3, "horizontal");
   let variable = ship2;
 
@@ -261,4 +261,14 @@ test("gameboard function with high co-ordinates horizontal", () => {
     ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9", "i10"],
     ["j1", "j2", "j3", "j4", "j5", "j6", "j7", "j8", "j9", "j10"],
   ]);
+});
+
+test("play on condition", () => {
+  let ship = new logic.ships("ship", logic.field[7][1], 3, "vertical");
+  let variable = ship;
+
+  let gameboard = new logic.gameboard();
+  gameboard.gameboardPosition(ship, gameboard);
+
+  expect(gameboard.allSunk(gameboard)).toBe("play on");
 });
