@@ -272,3 +272,8 @@ test("play on condition", () => {
 
   expect(gameboard.allSunk(gameboard)).toBe("play on");
 });
+
+test("play on condition", () => {
+  let gameboard = new logic.gameboard();
+  expect(gameboard.allSunk(gameboard)).toBe("THE WINNER");
+});
