@@ -115,11 +115,18 @@ class gameboard {
     console.log("Final COords:", coord);
     if (typeof coord !== "string") {
       console.log("hit");
-      return "hit"; /// this would call hit function
+      coord.hit(); /// coord references object and calls hit for hp which deducts hp by 1
+    } else if (coord === "x") {
+      console.log("INVALID CHOICE");
+      return "INVALID CHOICE"; /// return invalid choice as this has already been marked before
     } else {
-      console.log("good");
-      return "good"; /// this would just mark x for hit
+      console.log("hit blank box");
+      gameboard[ans][column - 1] = "x";
+      console.table(gameboard);
+      /// considered this hit as its a valid box and change it to x
     }
+
+    return gameboard;
   }
 }
 
