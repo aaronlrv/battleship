@@ -2,7 +2,6 @@ let field = [
   ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10"],
   ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9", "b10"],
   ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"],
-  ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"],
   ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10"],
   ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "e10"],
   ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10"],
@@ -54,6 +53,7 @@ class gameboard {
   }
 
   gameboardPosition(ship, gameboard) {
+    console.log(gameboard);
     let board = gameboard.board;
     let variable = ship;
 
@@ -69,14 +69,11 @@ class gameboard {
 
     let finalRow = row.toUpperCase();
     let ans = finalRow.charCodeAt() - 65;
-    console.log("Answer:", ans);
-    console.log("Length:", length);
-    console.log("Final Row:", finalRow);
     if (orientation === "vertical") {
       /// places vertically
       for (let i = 0; i < length; i++) {
         let j = ans;
-        board[j][column - 1] = variable;
+        board[j][column] = variable;
         ans++;
       }
       // for every loop
@@ -87,9 +84,7 @@ class gameboard {
       for (let i = 0; i < length; i++) {
         /// places it horizontally
         let j = ans;
-        console.log("J:", j);
-        console.log("I:", i);
-        board[column - 1][j] = variable;
+        board[column][j] = variable;
         ans++;
       }
     } else {
@@ -97,38 +92,36 @@ class gameboard {
     }
     console.table(board);
     return board;
-    // for (let index = 0; index < array.length; index++) {
-    //   ///place ships based on ship length
-    // }
-    // let arr = this.coordinates;
-    // console.log(arr);
-    // let split = arr.split("");
-    // console.log(split);
-    // let row = split[0];
-
-    // let column = split[1];
-    // let finalRow = row.toUpperCase();
-    // let ans = finalRow.charCodeAt() - 65;
-    // console.log(ans);
-
-    // // if (this.orientation === "vertical") {
-    //   for (let i = ans; i <= this.length; i++) {
-    //     /// places it vertically
-    //     field[i][column - 1] = this.id;
-    //     console.log(i);
-    //   }
-    // // } else if (this.orientation === "horizontal") {
-    //   for (let i = ans; i <= this.length; i++) {
-    //     /// places it horizontally
-    //     field[ans][i] = this.id;
-    //     console.log(i);
-    //   }
-    // } else {
-    //   return "Error orientation is incorrect";
-    // }
   }
 
-  recieveAttack() {}
+  recieveAttack(field, board) {
+    let gameboard = board.board;
+    let attack = field;
+    console.table(gameboard);
+    console.log("Attack:", attack);
+    let split = attack.split("");
+
+    let row = split[0];
+    let column = split[1];
+
+    console.log("Row:", row);
+    console.log("Column:", column);
+
+    let finalRow = row.toUpperCase();
+    console.log(finalRow);
+    let ans = finalRow.charCodeAt() - 65;
+    console.log("Answer:", ans);
+    let coord = gameboard[ans][column];
+
+    console.log("Final COords:", coord);
+    if (typeof coord !== "string") {
+      console.log("hit");
+      return "hit"; /// this would call hit function
+    } else {
+      console.log("good");
+      return "good"; /// this would just mark x for hit
+    }
+  }
 }
 
 export { field, ships, gameboard };
