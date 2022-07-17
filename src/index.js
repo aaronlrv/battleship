@@ -12,3 +12,11 @@ let gameboard2 = new logic.gameboard();
 let variable2 = ship;
 
 gameboard.gameboardPosition(ship2, gameboard2);
+gameboard.recieveAttack(logic.field[0][1], gameboard); /// a
+gameboard.recieveAttack(logic.field[1][1], gameboard); /// b
+gameboard.recieveAttack(logic.field[2][1], gameboard); /// c
+gameboard.recieveAttack(logic.field[3][1], gameboard); /// d
+gameboard.recieveAttack(logic.field[4][1], gameboard); /// e
+gameboard.recieveAttack(logic.field[5][1], gameboard); /// f
+
+gameboard.recieveAttack(logic.field[7][1], gameboard); /// f

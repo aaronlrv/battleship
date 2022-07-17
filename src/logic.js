@@ -116,6 +116,8 @@ class gameboard {
     if (typeof coord !== "string") {
       console.log("hit");
       coord.hit(); /// coord references object and calls hit for hp which deducts hp by 1
+      gameboard[ans][column - 1] = "o";
+      console.log(gameboard);
     } else if (coord === "x") {
       console.log("INVALID CHOICE");
       return "INVALID CHOICE"; /// return invalid choice as this has already been marked before
@@ -127,6 +129,23 @@ class gameboard {
     }
 
     return gameboard;
+  }
+
+  allSunk(board) {
+    let gameboard = board.board;
+    let arr = [];
+
+    gameboard.forEach((i) => {
+      i.forEach((j) => {
+        arr.push(j);
+      });
+    });
+    let condition = arr.every((x) => typeof x === "string");
+    console.log(condition);
+
+    if (condition === true) {
+      return "THE WINNER "; /// figure this out later
+    }
   }
 }
 
