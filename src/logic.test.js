@@ -11,7 +11,7 @@ test("test sink function", () => {
   expect(ship1.sunk()).toBe("ship has sunk");
 });
 
-test.skip("test hit function", () => {
+test("test hit function", () => {
   let ship1 = new logic.ships("p", field[1][1], 3);
 
   expect(ship1.hit()).toBe(2);
