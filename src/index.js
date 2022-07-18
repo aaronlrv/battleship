@@ -1,9 +1,12 @@
 import * as logic from "./logic.js";
+import * as visual from "./visual.js";
 let playerBoard = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
 
-let playerGameboard = new logic.gameboard();
-let computerGameboard = new logic.gameboard();
+let playerGameboard = new logic.gameboard().board;
+let computerGameboard = new logic.gameboard().board;
+
+visual.displayBoard(playerGameboard, computerGameboard);
 
 let player = new logic.player("Player1", logic.field[2][6]);
 let computer = new logic.player("computer");
@@ -13,28 +16,17 @@ console.log(computer);
 console.log(playerGameboard);
 console.log(computerGameboard);
 
+let ship1 = new logic.ships("patrol", logic.field[7][2], 5, "vertical");
 /// loops through the array and visually displays it
-function displayBoard() {
-  playerGameboard.board.forEach((element) => {
-    element.forEach((i) => {
-      let div = document.createElement("div");
-      div.classList.add(i);
-      div.textContent = i;
-      playerBoard.append(div);
-    });
-  });
-
-  computerGameboard.board.forEach((i) => {
-    i.forEach((j) => {
-      let div = document.createElement("div");
-      div.classList.add("j");
-      div.textContent = j;
-      computerBoard.append(div);
-    });
-  });
-}
 
 displayBoard();
+
+/// generate user
+/// generate computer
+/// generate user board
+/// generate computer board
+/// place user ships
+/// generate computer ships
 
 // let ship = new logic.ships("ship", logic.field[7][1], 3, "vertical");
 // let variable = ship;
