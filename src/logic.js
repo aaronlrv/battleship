@@ -96,38 +96,30 @@ class gameboard {
   recieveAttack(field, board) {
     let gameboard = board.board;
     let attack = field;
-    console.table(gameboard);
-    console.log("Attack:", attack);
+
     let split = attack.split("");
 
     let row = split[0];
     let column = split[1];
 
-    console.log("Row:", row);
-    console.log("Column:", column);
-
     let finalRow = row.toUpperCase();
-    console.log(finalRow);
+
     let ans = finalRow.charCodeAt() - 65;
-    console.log("Answer:", ans);
+
     let coord = gameboard[ans][column - 1];
 
-    console.log("Final COords:", coord);
     if (typeof coord !== "string") {
-      console.log("hit");
       coord.hit(); /// coord references object and calls hit for hp which deducts hp by 1
       gameboard[ans][column - 1] = "o";
-      console.log(gameboard);
     } else if (coord === "x") {
       console.log("INVALID CHOICE");
       return "INVALID CHOICE"; /// return invalid choice as this has already been marked before
     } else {
-      console.log("hit blank box");
       gameboard[ans][column - 1] = "x";
-      console.table(gameboard);
+
       /// considered this hit as its a valid box and change it to x
     }
-
+    console.table(gameboard);
     return gameboard;
   }
 
@@ -144,9 +136,28 @@ class gameboard {
     console.log(condition);
 
     if (condition === true) {
-      return "THE WINNER "; /// figure this out later
+      return "THE WINNER"; /// figure this out later
+    } else {
+      return "play on";
     }
   }
 }
 
-export { field, ships, gameboard };
+class player {
+  constructor(name) {
+    this.name = name;
+  }
+
+  computerPlay() {
+    let row = Math.floor(Math.random() * (10 - 0) + 0);
+    let column = Math.floor(Math.random() * (10 - 0) + 0);
+
+    console.log("Computer", row);
+    console.log("Computer", column);
+    let move = field[row][column];
+    console.log("Move", move);
+    return move;
+  }
+}
+
+export { field, ships, gameboard, player };
