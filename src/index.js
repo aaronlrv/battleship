@@ -10,8 +10,64 @@ visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
 playerChoice.addEventListener("click", (e) => {
   let cell = e.target.textContent;
-  logic.placeShip(cell);
+  console.log(cell);
+  placeShip(cell);
 });
+
+function placeShip(cell) {
+  let temp = playerGameboard.board;
+
+  let ans = temp.every((row) => row.every((x) => typeof x === "string"));
+  console.log(ans);
+  if (temp.some((row) => row.some((x) => x.name === "ds"))) {
+    return;
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "cr"))) {
+    let ship4 = new logic.ships("ds", cell, 2, "vertical");
+    let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
+    visual.displayBoard(playerBoard, computerGameboard.board);
+    return;
+  } else {
+    console.log("do nothing");
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "su"))) {
+    let ship4 = new logic.ships("cr", cell, 3, "vertical");
+    let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
+    visual.displayBoard(playerBoard, computerGameboard.board);
+    return;
+  } else {
+    console.log("do nothing");
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "bs"))) {
+    let ship3 = new logic.ships("su", cell, 3, "vertical");
+    let playerBoard = playerGameboard.gameboardPosition(ship3, playerGameboard);
+    visual.displayBoard(playerBoard, computerGameboard.board);
+    return;
+  } else {
+    console.log("do nothing");
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "ca"))) {
+    let ship1 = new logic.ships("bs", cell, 4, "vertical");
+    let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
+    visual.displayBoard(playerBoard, computerGameboard.board);
+    return;
+  } else {
+    console.log("do nothing");
+  }
+
+  if (ans) {
+    let ship2 = new logic.ships("ca", cell, 5, "horizontal");
+    let playerBoard = playerGameboard.gameboardPosition(ship2, playerGameboard);
+    visual.displayBoard(playerBoard, computerGameboard.board);
+    return;
+  }
+
+  console.log(playerGameboard.board);
+}
 
 // let player = new logic.player("Player1", logic.field[2][6]);
 // let computer = new logic.player("computer");

@@ -171,11 +171,4 @@ class player {
   }
 }
 
-function placeShip(cell) {
-  let ship1 = new logic.ships("patrol", cell, 5, "vertical");
-  let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
-  console.log(playerBoard);
-  console.log(playerGameboard);
-  visual.displayBoard(playerBoard, computerGameboard.board);
-}
-export { field, ships, gameboard, player, placeShip };
+export { field, ships, gameboard, player };
