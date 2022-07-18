@@ -143,15 +143,15 @@ class gameboard {
   }
 }
 
-let computerMove = [];
-let playerMove = [];
 class player {
-  constructor(name) {
+  constructor(name, attack) {
     this.name = name;
     this.arr = [];
+    this.attack = attack;
   }
 
   computerPlay() {
+    let arr = this.arr;
     let row = Math.floor(Math.random() * (10 - 0) + 0);
     let column = Math.floor(Math.random() * (10 - 0) + 0);
 
@@ -159,7 +159,15 @@ class player {
     console.log("Computer", column);
     let move = field[row][column];
     console.log("Move", move);
-    return move;
+
+    if (arr.indexOf(move) !== -1) {
+      this.computerPlay();
+    } else {
+      arr.push(move);
+      return move;
+    }
+
+    console.log(arr);
   }
 }
 
