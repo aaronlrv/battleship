@@ -17,8 +17,6 @@ playerChoice.addEventListener("click", (e) => {
 function placeShip(cell) {
   let temp = playerGameboard.board;
 
-  let ans = temp.every((row) => row.every((x) => typeof x === "string"));
-  console.log(ans);
   if (temp.some((row) => row.some((x) => x.name === "ds"))) {
     return;
   }
@@ -59,7 +57,7 @@ function placeShip(cell) {
     console.log("do nothing");
   }
 
-  if (ans) {
+  if (temp.every((row) => row.every((x) => typeof x === "string"))) {
     let ship2 = new logic.ships("ca", cell, 5, "horizontal");
     let playerBoard = playerGameboard.gameboardPosition(ship2, playerGameboard);
     visual.displayBoard(playerBoard, computerGameboard.board);
