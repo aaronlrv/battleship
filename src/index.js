@@ -1,25 +1,26 @@
 import * as logic from "./logic.js";
 import * as visual from "./visual.js";
-let playerBoard = document.querySelector(".playerArray");
-let computerBoard = document.querySelector(".computerArray");
 
-let playerGameboard = new logic.gameboard().board;
-let computerGameboard = new logic.gameboard().board;
+let playerChoice = document.querySelector(".playerArray");
+let playerChoice2 = playerChoice.children;
 
-visual.displayBoard(playerGameboard, computerGameboard);
+let playerGameboard = new logic.gameboard();
+let computerGameboard = new logic.gameboard();
+visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
-let player = new logic.player("Player1", logic.field[2][6]);
-let computer = new logic.player("computer");
+playerChoice.addEventListener("click", (e) => {
+  let cell = e.target.textContent;
+  let ship1 = new logic.ships("patrol", cell, 5, "vertical");
+  let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
+  console.log(playerBoard);
+  console.log(playerGameboard);
+  visual.displayBoard(playerBoard, computerGameboard.board);
+});
 
-console.log(player);
-console.log(computer);
-console.log(playerGameboard);
-console.log(computerGameboard);
+// let player = new logic.player("Player1", logic.field[2][6]);
+// let computer = new logic.player("computer");
 
-let ship1 = new logic.ships("patrol", logic.field[7][2], 5, "vertical");
 /// loops through the array and visually displays it
-
-displayBoard();
 
 /// generate user
 /// generate computer
