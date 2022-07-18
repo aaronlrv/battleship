@@ -143,9 +143,12 @@ class gameboard {
   }
 }
 
+let computerMove = [];
+let playerMove = [];
 class player {
   constructor(name) {
     this.name = name;
+    this.arr = [];
   }
 
   computerPlay() {
