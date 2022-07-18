@@ -12,3 +12,30 @@ html {
 .container {
   height: 100%;
 }
+
+.wrapper {
+  border: 1px solid blue;
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  grid-template-rows: repeat(2, 0.5fr);
+}
+.playerArray,
+.computerArray {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+}
+
+.playerBoard,
+.computerBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerArray > *,
+.computerArray > * {
+  border: 1px solid black;
+  text-align: center;
+}
