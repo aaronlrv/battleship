@@ -10,11 +10,7 @@ visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
 playerChoice.addEventListener("click", (e) => {
   let cell = e.target.textContent;
-  let ship1 = new logic.ships("patrol", cell, 5, "vertical");
-  let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
-  console.log(playerBoard);
-  console.log(playerGameboard);
-  visual.displayBoard(playerBoard, computerGameboard.board);
+  logic.placeShip(cell);
 });
 
 // let player = new logic.player("Player1", logic.field[2][6]);
