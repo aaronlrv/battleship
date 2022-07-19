@@ -143,10 +143,18 @@ class gameboard {
           typeof board[ans - 1][column - 1] === "string" &&
           typeof board[ans + 1][column - 1] === "string"
         ) {
+          let counter = column;
           for (let i = 0; i < length; i++) {
             /// places it horizontally
+            if (counter === 11) {
+              return;
+            } else {
+              console.log("Column:", column);
+              counter++;
+            }
+          }
+          for (let m = 0; m < length; m++) {
             let j = ans;
-            console.log("Column:", column);
             board[j][column - 1] = variable;
             column++;
           }
