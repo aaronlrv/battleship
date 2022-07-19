@@ -73,6 +73,38 @@ class gameboard {
     let finalRow = row.toUpperCase();
     let ans = finalRow.charCodeAt() - 65;
     console.log("Answer:", ans);
+
+    for (let i = 0; i < length; i++) {
+      /// horizontal
+      console.log(board[+ans][column + i]);
+      if (typeof board[+ans][column + i] === "string") {
+        console.log("the coast is clear!");
+      }
+    }
+
+    for (let i = 0; i < length; i++) {
+      /// horizontal
+      console.log(board[+ans + i][column]);
+      if (typeof board[+ans + i][column] === "string") {
+        console.log("the coast is clear!");
+      }
+    }
+
+    // if (
+    //   typeof board[ans][column] === "string" &&
+    //   typeof board[ans - 1][column - 1] === "string" &&
+    //   typeof board[ans + 1][column + 1] === "string" &&
+    //   typeof board[ans][column + 1] === "string" &&
+    //   typeof board[ans + 1][column] === "string" &&
+    //   typeof [ans - 1][column] === "string" &&
+    //   board[ans][column - 1] === "string" &&
+    //   typeof board[ans + 1][column - 1] === "string"
+    // ) {
+    //   console.log("this works");
+    // } else {
+    //   console.log("youre wrong!");
+    // }
+
     if (orientation === "vertical") {
       /// places vertically
       for (let i = 0; i < length; i++) {
@@ -98,6 +130,7 @@ class gameboard {
       return "Error orientation is incorrect";
     }
     console.table(board);
+
     return board;
   }
 
