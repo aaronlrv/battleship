@@ -53,6 +53,7 @@ class gameboard {
 
   gameboardPosition(ship, gameboard) {
     let board = gameboard.board;
+    console.log("Board:", board);
     let variable = ship;
 
     let length = variable.length;
@@ -74,22 +75,6 @@ class gameboard {
     let ans = finalRow.charCodeAt() - 65;
     console.log("Answer:", ans);
 
-    for (let i = 0; i < length; i++) {
-      /// horizontal
-      console.log(board[+ans][column + i]);
-      if (typeof board[+ans][column + i] === "string") {
-        console.log("the coast is clear!");
-      }
-    }
-
-    for (let i = 0; i < length; i++) {
-      /// horizontal
-      console.log(board[+ans + i][column]);
-      if (typeof board[+ans + i][column] === "string") {
-        console.log("the coast is clear!");
-      }
-    }
-
     // if (
     //   typeof board[ans][column] === "string" &&
     //   typeof board[ans - 1][column - 1] === "string" &&
@@ -106,25 +91,66 @@ class gameboard {
     // }
 
     if (orientation === "vertical") {
-      /// places vertically
-      for (let i = 0; i < length; i++) {
-        let j = ans;
-        board[j][column - 1] = variable;
-        ans++;
-        console.log(j);
+      console.log("Type", typeof Number(ans));
+      let answer = Number(ans);
+
+      for (let i = 0; i < 1; i++) {
+        console.log("I:", i);
+        /// vertical
+        if (typeof board[answer + i][column] === "string") {
+          console.log("board[ans +i][column]", board[answer - 1][column]);
+          console.log("board[ans][column - 2]", board[answer][column - 2]);
+          console.log("board[ans][column + 1]", board[answer][column + 1]);
+          ////
+          console.log("the coast is clear!");
+          for (let k = 0; k < length; k++) {
+            let j = ans;
+            console.log("Length:", length);
+            console.log("K", k);
+            let col = Number(column);
+            console.log("J", j);
+
+            // try {
+            //   board[j][col - 1] = variable;
+            // } catch (e) {
+            //   console.log("j was bad");
+            //   console.log("J catch:", j);
+            //   console.log(board);
+            //   console.log(board[j]);
+            // }
+
+            board[j][col - 1] = variable;
+            ans++;
+          }
+        }
       }
+      /// places vertically
+
       // for every loop
       // it assigns ans + 1 (ans being the final row)
       // and then increments the answer to keep increasing the column
       // until the for loop stops because it keeps track of i now
     } else if (variable.orientation === "horizontal") {
+      console.log(board[ans][column - 2]);
+      console.log(board[ans - 1][column - 1]);
+      console.log(board[ans + 1][column - 1]);
+
       for (let i = 0; i < length; i++) {
-        /// places it horizontally
-        let j = ans;
-        console.log("Column:", column);
-        board[j][column - 1] = variable;
-        column++;
-        console.log(j);
+        /// horizontal checking
+        if (
+          typeof board[+ans][column + i] === "string" &&
+          typeof board[ans][column - 2] === "string" &&
+          typeof board[ans - 1][column - 1] === "string" &&
+          typeof board[ans + 1][column - 1] === "string"
+        ) {
+          for (let i = 0; i < length; i++) {
+            /// places it horizontally
+            let j = ans;
+            console.log("Column:", column);
+            board[j][column - 1] = variable;
+            column++;
+          }
+        }
       }
     } else {
       return "Error orientation is incorrect";
