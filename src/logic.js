@@ -103,13 +103,14 @@ class gameboard {
           console.log("board[ans][column + 1]", board[answer][column + 1]);
           ////
           console.log("the coast is clear!");
+          let counter = ans;
           for (let k = 0; k < length; k++) {
-            let j = ans;
-            console.log("Length:", length);
-            console.log("K", k);
-            let col = Number(column);
-            console.log("J", j);
-
+            if (counter === 10) {
+              return;
+            } else {
+              console.log("Counter:", counter);
+              counter++;
+            }
             // try {
             //   board[j][col - 1] = variable;
             // } catch (e) {
@@ -118,7 +119,22 @@ class gameboard {
             //   console.log(board);
             //   console.log(board[j]);
             // }
+          }
+          for (let m = 0; m < length; m++) {
+            console.log("Length:", length);
+            console.log("M:", m);
+            let j = ans;
+            let col = Number(column);
+            console.log(col);
 
+            try {
+              board[j][col - 1] = variable;
+            } catch (e) {
+              console.log("j was bad");
+              console.log("J catch:", j);
+              console.log(board);
+              console.log(board[j]);
+            }
             board[j][col - 1] = variable;
             ans++;
           }
