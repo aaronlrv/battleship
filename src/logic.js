@@ -52,7 +52,6 @@ class gameboard {
   }
 
   gameboardPosition(ship, gameboard) {
-    console.log(gameboard);
     let board = gameboard.board;
     let variable = ship;
 
@@ -62,18 +61,25 @@ class gameboard {
     let name = variable.name;
 
     let split = start.split("");
+    console.log("Split:", split);
 
     let row = split[0];
-    let column = split[1];
+    let column = +split[1];
+    console.log(typeof column);
+
+    console.log("Row:", row);
+    console.log("Column:", column);
 
     let finalRow = row.toUpperCase();
     let ans = finalRow.charCodeAt() - 65;
+    console.log("Answer:", ans);
     if (orientation === "vertical") {
       /// places vertically
       for (let i = 0; i < length; i++) {
         let j = ans;
         board[j][column - 1] = variable;
         ans++;
+        console.log(j);
       }
       // for every loop
       // it assigns ans + 1 (ans being the final row)
@@ -83,8 +89,10 @@ class gameboard {
       for (let i = 0; i < length; i++) {
         /// places it horizontally
         let j = ans;
-        board[column - 1][j] = variable;
-        ans++;
+        console.log("Column:", column);
+        board[j][column - 1] = variable;
+        column++;
+        console.log(j);
       }
     } else {
       return "Error orientation is incorrect";
