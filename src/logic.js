@@ -186,12 +186,14 @@ class gameboard {
     let column = split[1];
 
     let finalRow = row.toUpperCase();
-
     let ans = finalRow.charCodeAt() - 65;
+    console.log("Answer", ans);
 
     let coord = gameboard[ans][column - 1];
+    console.log("Coord", coord);
 
     if (typeof coord !== "string") {
+      console.log(coord);
       coord.hit(); /// coord references object and calls hit for hp which deducts hp by 1
       gameboard[ans][column - 1] = "o";
     } else if (coord === "x") {
@@ -225,8 +227,8 @@ class gameboard {
     }
   }
   computerGenerate() {
-    let row = Math.floor(Math.random() * (10 - 1) + 1);
-    let column = Math.floor(Math.random() * (10 - 1) + 1);
+    let row = Math.floor(Math.random() * (10 - 2) + 2);
+    let column = Math.floor(Math.random() * (10 - 2) + 2);
     let choice = ["horizontal", "vertical"];
     let min = Math.ceil(0);
     let max = Math.max(2);
