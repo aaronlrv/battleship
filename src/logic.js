@@ -91,16 +91,12 @@ class gameboard {
     // }
 
     if (orientation === "vertical") {
-      console.log("Type", typeof Number(ans));
       let answer = Number(ans);
 
       for (let i = 0; i < 1; i++) {
         console.log("I:", i);
         /// vertical
         if (typeof board[answer + i][column] === "string") {
-          console.log("board[ans +i][column]", board[answer - 1][column]);
-          console.log("board[ans][column - 2]", board[answer][column - 2]);
-          console.log("board[ans][column + 1]", board[answer][column + 1]);
           ////
           console.log("the coast is clear!");
           let counter = ans;
@@ -147,10 +143,6 @@ class gameboard {
       // and then increments the answer to keep increasing the column
       // until the for loop stops because it keeps track of i now
     } else if (variable.orientation === "horizontal") {
-      console.log(board[ans][column - 2]);
-      console.log(board[ans - 1][column - 1]);
-      console.log(board[ans + 1][column - 1]);
-
       for (let i = 0; i < length; i++) {
         /// horizontal checking
         if (
@@ -233,8 +225,8 @@ class gameboard {
     }
   }
   computerGenerate() {
-    let row = Math.floor(Math.random() * (10 - 0) + 0);
-    let column = Math.floor(Math.random() * (10 - 0) + 0);
+    let row = Math.floor(Math.random() * (10 - 1) + 1);
+    let column = Math.floor(Math.random() * (10 - 1) + 1);
     let choice = ["horizontal", "vertical"];
     let min = Math.ceil(0);
     let max = Math.max(2);
