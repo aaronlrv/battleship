@@ -3,9 +3,11 @@ import * as visual from "./visual.js";
 
 let playerChoice = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
+let winner = document.querySelector(".winner-text");
 
 let playerGameboard = new logic.gameboard();
 let computerGameboard = new logic.gameboard();
+
 visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
 function computerPlace() {
@@ -81,11 +83,17 @@ playerChoice.addEventListener("click", (e) => {
 });
 
 computerBoard.addEventListener("click", (e) => {
-  let cell = e.target.textContent;
+  let cell = e.target.dataset.cell;
   console.log("Attack cell:", cell);
 
   computerGameboard.recieveAttack(cell, computerGameboard);
+
   console.log("Computer Gameboard", computerGameboard);
+
+  if (computerGameboard.allSunk(computerGameboard) === "THE WINNER") {
+    winner.textContent = "player has won!";
+    return;
+  }
   visual.displayBoard(playerGameboard.board, computerGameboard.board);
 });
 
