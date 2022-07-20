@@ -8,6 +8,71 @@ let playerGameboard = new logic.gameboard();
 let computerGameboard = new logic.gameboard();
 visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
+function computerPlace() {
+  /// 3 needs to repeat twice
+  let name;
+  let length;
+  for (let i = 2; i < 6; i++) {
+    if (i === 2) {
+      name = "ds";
+      length = 2;
+    }
+
+    if (i === 3) {
+      name = "su";
+      length = 3;
+      for (let k = 0; k <= 2; k++) {
+        let computerShip = new logic.ships(
+          name,
+          logic.field[computerGameboard.computerGenerate().row][
+            computerGameboard.computerGenerate().column
+          ],
+          3,
+          computerGameboard.computerGenerate().orientation
+        );
+        console.log(computerShip);
+
+        let computerPlace = computerGameboard.gameboardPosition(
+          computerShip,
+          computerGameboard
+        );
+
+        visual.displayBoard(playerGameboard.board, computerGameboard.board);
+        name = "cr";
+      }
+    }
+
+    if (i === 4) {
+      name = "bs";
+      length = 4;
+    }
+
+    if (i === 5) {
+      name = "ca";
+      length = 5;
+    }
+
+    let computerShip = new logic.ships(
+      name,
+      logic.field[computerGameboard.computerGenerate().row][
+        computerGameboard.computerGenerate().column
+      ],
+      length,
+      computerGameboard.computerGenerate().orientation
+    );
+    console.log(computerShip);
+
+    let computerPlace = computerGameboard.gameboardPosition(
+      computerShip,
+      computerGameboard
+    );
+
+    visual.displayBoard(playerGameboard.board, computerGameboard.board);
+  }
+}
+
+computerPlace();
+
 playerChoice.addEventListener("click", (e) => {
   let cell = e.target.textContent;
   let arr = [];
