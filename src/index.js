@@ -4,9 +4,15 @@ import * as visual from "./visual.js";
 let playerChoice = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
 let winner = document.querySelector(".winner-text");
+let btn = document.querySelector(".btn");
 
 let playerGameboard = new logic.gameboard();
 let computerGameboard = new logic.gameboard();
+let player = new logic.player("player");
+let computer = new logic.player("computer");
+
+let computerAttack = computer.computerPlay();
+playerGameboard.recieveAttack(computerAttack, playerGameboard);
 
 visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
@@ -72,14 +78,22 @@ function computerPlace() {
     visual.displayBoard(playerGameboard.board, computerGameboard.board);
   }
 }
-
-computerPlace();
+btn.addEventListener("click", (e) => {
+  if (e.target.textContent === "vertical") {
+    btn.textContent = "horizontal";
+  } else {
+    btn.textContent = "vertical";
+  }
+});
 
 playerChoice.addEventListener("click", (e) => {
+  let orientation = btn.textContent;
+  console.log(orientation);
+
   let cell = e.target.textContent;
   let arr = [];
   console.log("Cell:", cell);
-  placeShip(cell);
+  placeShip(cell, orientation);
 });
 
 computerBoard.addEventListener("click", (e) => {
@@ -97,7 +111,7 @@ computerBoard.addEventListener("click", (e) => {
   visual.displayBoard(playerGameboard.board, computerGameboard.board);
 });
 
-function placeShip(cell) {
+function placeShip(cell, orientation) {
   let temp = playerGameboard.board;
 
   if (temp.some((row) => row.some((x) => x.name === "ds"))) {
@@ -105,7 +119,7 @@ function placeShip(cell) {
   }
 
   if (temp.some((row) => row.some((x) => x.name === "cr"))) {
-    let ship4 = new logic.ships("ds", cell, 2, "vertical");
+    let ship4 = new logic.ships("ds", cell, 2, orientation);
     let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
     if (playerBoard === undefined) {
       console.log(playerBoard);
@@ -117,7 +131,7 @@ function placeShip(cell) {
   }
 
   if (temp.some((row) => row.some((x) => x.name === "su"))) {
-    let ship4 = new logic.ships("cr", cell, 3, "horizontal");
+    let ship4 = new logic.ships("cr", cell, 3, orientation);
     let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
     if (playerBoard === undefined) {
       console.log(playerBoard);
@@ -129,7 +143,7 @@ function placeShip(cell) {
   }
 
   if (temp.some((row) => row.some((x) => x.name === "bs"))) {
-    let ship3 = new logic.ships("su", cell, 3, "vertical");
+    let ship3 = new logic.ships("su", cell, 3, orientation);
     let playerBoard = playerGameboard.gameboardPosition(ship3, playerGameboard);
     if (playerBoard === undefined) {
       console.log(playerBoard);
@@ -141,7 +155,7 @@ function placeShip(cell) {
   }
 
   if (temp.some((row) => row.some((x) => x.name === "ca"))) {
-    let ship1 = new logic.ships("bs", cell, 4, "horizontal");
+    let ship1 = new logic.ships("bs", cell, 4, orientation);
     let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
     if (playerBoard === undefined) {
       console.log(playerBoard);
@@ -153,7 +167,7 @@ function placeShip(cell) {
   }
 
   if (temp.every((row) => row.every((x) => typeof x === "string"))) {
-    let ship2 = new logic.ships("ca", cell, 5, "horizontal");
+    let ship2 = new logic.ships("ca", cell, 5, orientation);
     let playerBoard = playerGameboard.gameboardPosition(ship2, playerGameboard);
     if (playerBoard === undefined) {
       console.log(playerBoard);
