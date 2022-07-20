@@ -2,7 +2,7 @@ import * as logic from "./logic.js";
 import * as visual from "./visual.js";
 
 let playerChoice = document.querySelector(".playerArray");
-let playerChoice2 = playerChoice.children;
+let computerBoard = document.querySelector(".computerArray");
 
 let playerGameboard = new logic.gameboard();
 let computerGameboard = new logic.gameboard();
@@ -13,16 +13,15 @@ playerChoice.addEventListener("click", (e) => {
   let arr = [];
   console.log("Cell:", cell);
   placeShip(cell);
+});
 
-  // console.log(arr.some((x) => x === cell));
-  // if (arr.some((x) => x === cell)) {
-  //   console.log("invalid");
-  //   return "invalid choice";
-  // } else {
-  //   console.log("Cell:", dcell);
-  //   placeShip(cell);
-  // }
-  // arr.push(cell);
+computerBoard.addEventListener("click", (e) => {
+  let cell = e.target.textContent;
+  console.log("Attack cell:", cell);
+
+  computerGameboard.recieveAttack(cell, computerGameboard);
+  console.log("Computer Gameboard", computerGameboard);
+  visual.displayBoard(playerGameboard.board, computerGameboard.board);
 });
 
 function placeShip(cell) {
