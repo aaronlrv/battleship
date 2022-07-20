@@ -232,6 +232,21 @@ class gameboard {
       return "play on";
     }
   }
+  computerGenerate() {
+    let row = Math.floor(Math.random() * (10 - 0) + 0);
+    let column = Math.floor(Math.random() * (10 - 0) + 0);
+    let choice = ["horizontal", "vertical"];
+    let min = Math.ceil(0);
+    let max = Math.max(2);
+    let choiceNum = Math.floor(Math.random() * (max - min) + min);
+    let orientation = choice[choiceNum];
+
+    return { row, column, orientation };
+    console.log("Choice Num:", choiceNum);
+    console.log("Choice:", choice[choiceNum]);
+    console.log("Row", row);
+    console.log("Column", column);
+  }
 }
 
 class player {
