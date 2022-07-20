@@ -5,16 +5,151 @@ let playerChoice = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
 let winner = document.querySelector(".winner-text");
 let btn = document.querySelector(".btn");
+let turn = document.querySelector(".turn");
 
 let playerGameboard = new logic.gameboard();
 let computerGameboard = new logic.gameboard();
 let player = new logic.player("player");
 let computer = new logic.player("computer");
-
-let computerAttack = computer.computerPlay();
-playerGameboard.recieveAttack(computerAttack, playerGameboard);
-
 visual.displayBoard(playerGameboard.board, computerGameboard.board);
+
+btn.addEventListener("click", (e) => {
+  if (e.target.textContent === "vertical") {
+    btn.textContent = "horizontal";
+  } else {
+    btn.textContent = "vertical";
+  }
+});
+
+playerChoice.addEventListener("click", (e) => {
+  let orientation = btn.textContent;
+  console.log(orientation);
+
+  let cell = e.target.textContent;
+  let arr = [];
+  console.log("Cell:", cell);
+  placeShip(cell, orientation);
+});
+
+computerBoard.addEventListener("click", (e) => {
+  if (
+    turn.textContent !== "Player Turn" ||
+    turn.textContent === "Place your ships"
+  ) {
+    return;
+  } else {
+    let cell = e.target.dataset.cell;
+    console.log("Attack cell:", cell);
+
+    computerGameboard.recieveAttack(cell, computerGameboard);
+
+    console.log("Computer Gameboard", computerGameboard);
+
+    if (computerGameboard.allSunk(computerGameboard) === "THE WINNER") {
+      winner.textContent = "Player has won!";
+      visual.displayBoard(playerGameboard.board, computerGameboard.board);
+
+      return;
+    } else {
+      turn.textContent = "Computer Turn";
+      visual.displayBoard(playerGameboard.board, computerGameboard.board);
+      console.log("Player turn finished");
+      computerMove();
+    }
+  }
+});
+
+/// gameflow begins here
+function computerMove() {
+  if (turn.textContent === "Player Turn") {
+    return;
+  } else {
+    let computerAttack = computer.computerPlay();
+    playerGameboard.recieveAttack(computerAttack, playerGameboard);
+    visual.displayBoard(playerGameboard.board, computerGameboard.board);
+    if (playerGameboard.allSunk(playerGameboard) === "THE WINNER") {
+      winner.textContent = "Computer has won!";
+      return;
+    } else {
+      turn.textContent = "Player Turn";
+      console.log("Computer turn finished");
+    }
+  }
+}
+
+function placeShip(cell, orientation) {
+  let temp = playerGameboard.board;
+
+  if (temp.some((row) => row.some((x) => x.name === "ds"))) {
+    /// return if all ships are placed and baord is clicked aka do nothing
+    return;
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "cr"))) {
+    let ship4 = new logic.ships("ds", cell, 2, orientation);
+    let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
+    if (playerBoard === undefined) {
+      console.log(playerBoard);
+      console.log("Pick another position!");
+    } else {
+      visual.displayBoard(playerBoard, computerGameboard.board);
+    }
+    computerPlace(); /// once all the ships is placed, generate the ships
+    turn.textContent = "Player Turn";
+    return;
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "su"))) {
+    let ship4 = new logic.ships("cr", cell, 3, orientation);
+    let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
+    if (playerBoard === undefined) {
+      console.log(playerBoard);
+      console.log("Pick another position!");
+    } else {
+      visual.displayBoard(playerBoard, computerGameboard.board);
+    }
+    return;
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "bs"))) {
+    let ship3 = new logic.ships("su", cell, 3, orientation);
+    let playerBoard = playerGameboard.gameboardPosition(ship3, playerGameboard);
+    if (playerBoard === undefined) {
+      console.log(playerBoard);
+      console.log("Pick another position");
+    } else {
+      visual.displayBoard(playerBoard, computerGameboard.board);
+    }
+    return;
+  }
+
+  if (temp.some((row) => row.some((x) => x.name === "ca"))) {
+    let ship1 = new logic.ships("bs", cell, 4, orientation);
+    let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
+    if (playerBoard === undefined) {
+      console.log(playerBoard);
+      console.log("Pick another position!");
+    } else {
+      visual.displayBoard(playerBoard, computerGameboard.board);
+    }
+    return;
+  }
+
+  if (temp.every((row) => row.every((x) => typeof x === "string"))) {
+    let ship2 = new logic.ships("ca", cell, 5, orientation);
+    let playerBoard = playerGameboard.gameboardPosition(ship2, playerGameboard);
+    if (playerBoard === undefined) {
+      console.log(playerBoard);
+      console.log("Pick another position!");
+    } else {
+      visual.displayBoard(playerBoard, computerGameboard.board);
+    }
+
+    return;
+  }
+
+  console.log(playerGameboard.board);
+}
 
 function computerPlace() {
   /// 3 needs to repeat twice
@@ -77,109 +212,6 @@ function computerPlace() {
 
     visual.displayBoard(playerGameboard.board, computerGameboard.board);
   }
-}
-btn.addEventListener("click", (e) => {
-  if (e.target.textContent === "vertical") {
-    btn.textContent = "horizontal";
-  } else {
-    btn.textContent = "vertical";
-  }
-});
-
-playerChoice.addEventListener("click", (e) => {
-  let orientation = btn.textContent;
-  console.log(orientation);
-
-  let cell = e.target.textContent;
-  let arr = [];
-  console.log("Cell:", cell);
-  placeShip(cell, orientation);
-});
-
-computerBoard.addEventListener("click", (e) => {
-  let cell = e.target.dataset.cell;
-  console.log("Attack cell:", cell);
-
-  computerGameboard.recieveAttack(cell, computerGameboard);
-
-  console.log("Computer Gameboard", computerGameboard);
-
-  if (computerGameboard.allSunk(computerGameboard) === "THE WINNER") {
-    winner.textContent = "player has won!";
-    return;
-  }
-  visual.displayBoard(playerGameboard.board, computerGameboard.board);
-});
-
-function placeShip(cell, orientation) {
-  let temp = playerGameboard.board;
-
-  if (temp.some((row) => row.some((x) => x.name === "ds"))) {
-    return;
-  }
-
-  if (temp.some((row) => row.some((x) => x.name === "cr"))) {
-    let ship4 = new logic.ships("ds", cell, 2, orientation);
-    let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
-    if (playerBoard === undefined) {
-      console.log(playerBoard);
-      console.log("Pick another position!");
-    } else {
-      visual.displayBoard(playerBoard, computerGameboard.board);
-    }
-    return;
-  }
-
-  if (temp.some((row) => row.some((x) => x.name === "su"))) {
-    let ship4 = new logic.ships("cr", cell, 3, orientation);
-    let playerBoard = playerGameboard.gameboardPosition(ship4, playerGameboard);
-    if (playerBoard === undefined) {
-      console.log(playerBoard);
-      console.log("Pick another position!");
-    } else {
-      visual.displayBoard(playerBoard, computerGameboard.board);
-    }
-    return;
-  }
-
-  if (temp.some((row) => row.some((x) => x.name === "bs"))) {
-    let ship3 = new logic.ships("su", cell, 3, orientation);
-    let playerBoard = playerGameboard.gameboardPosition(ship3, playerGameboard);
-    if (playerBoard === undefined) {
-      console.log(playerBoard);
-      console.log("Pick another position");
-    } else {
-      visual.displayBoard(playerBoard, computerGameboard.board);
-    }
-    return;
-  }
-
-  if (temp.some((row) => row.some((x) => x.name === "ca"))) {
-    let ship1 = new logic.ships("bs", cell, 4, orientation);
-    let playerBoard = playerGameboard.gameboardPosition(ship1, playerGameboard);
-    if (playerBoard === undefined) {
-      console.log(playerBoard);
-      console.log("Pick another position!");
-    } else {
-      visual.displayBoard(playerBoard, computerGameboard.board);
-    }
-    return;
-  }
-
-  if (temp.every((row) => row.every((x) => typeof x === "string"))) {
-    let ship2 = new logic.ships("ca", cell, 5, orientation);
-    let playerBoard = playerGameboard.gameboardPosition(ship2, playerGameboard);
-    if (playerBoard === undefined) {
-      console.log(playerBoard);
-      console.log("Pick another position!");
-    } else {
-      visual.displayBoard(playerBoard, computerGameboard.board);
-    }
-
-    return;
-  }
-
-  console.log(playerGameboard.board);
 }
 
 // let player = new logic.player("Player1", logic.field[2][6]);
