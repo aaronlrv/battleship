@@ -26,7 +26,6 @@ html {
 
 .wrapper {
   height: 100%;
-  border: 1px solid blue;
   display: grid;
   grid-template-columns: repeat(2, 0.5fr);
   grid-template-rows: 0.5fr;
@@ -86,8 +85,3 @@ html {
 .footer p {
   color: black;
 }
-
-/* .playerArray > * {
-  background-color: #52688f;
-  color: #52688f;
-} */
