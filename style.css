@@ -12,6 +12,7 @@ html {
 }
 .container {
   height: 100%;
+  background-color: #e3e7f1;
 }
 
 .wrapper {
