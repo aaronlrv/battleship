@@ -67,4 +67,11 @@ function displayBoard(player, computer) {
   });
 }
 
-export { displayBoard };
+function hover(length, orientation) {
+  playerBoard.addEventListener("mouseover", (e) => {
+    e.target.style.backgroundColor = "#F7CB2D";
+    e.target.style.color = "#F7CB2D";
+  });
+}
+
+export { displayBoard, hover };
