@@ -2,6 +2,7 @@ import { player } from "./logic";
 
 let playerBoard = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
+let turn = document.querySelector(".turn");
 
 function displayBoard(player, computer) {
   console.log("Player Board", playerBoard);
@@ -42,13 +43,31 @@ function displayBoard(player, computer) {
         div.dataset.cell = arr[m];
         m++;
       } else {
-        let div = document.createElement("div");
-        div.textContent = i;
-        div.style.backgroundColor = " #52688f";
-        div.style.color = "#52688f";
-        playerBoard.append(div);
-        div.dataset.cell = arr[m];
-        m++;
+        if (i === "o") {
+          let div = document.createElement("div");
+          div.textContent = i;
+          div.style.backgroundColor = " #A2C4E0";
+          div.style.color = "#A2C4E0";
+          playerBoard.append(div);
+          div.dataset.cell = arr[m];
+          m++;
+        } else if (i === "x") {
+          let div = document.createElement("div");
+          div.textContent = i;
+          div.style.backgroundColor = "#BDC6D9";
+          div.style.color = "#BDC6D9";
+          playerBoard.append(div);
+          div.dataset.cell = arr[m];
+          m++;
+        } else {
+          let div = document.createElement("div");
+          div.textContent = i;
+          div.style.backgroundColor = " #52688f";
+          div.style.color = "#52688f";
+          playerBoard.append(div);
+          div.dataset.cell = arr[m];
+          m++;
+        }
       }
     });
   });
@@ -61,14 +80,36 @@ function displayBoard(player, computer) {
         let div = document.createElement("div");
         div.textContent = name;
         computerBoard.append(div);
+        div.style.backgroundColor = "#7391C8";
+        div.style.color = "#7391C8";
         div.dataset.cell = arr[m];
         m++;
       } else {
-        let div = document.createElement("div");
-        div.textContent = element[k];
-        computerBoard.append(div);
-        div.dataset.cell = arr[m];
-        m++;
+        if (element[k] === "o") {
+          let div = document.createElement("div");
+          div.textContent = element[k];
+          computerBoard.append(div);
+          div.style.backgroundColor = " #A2C4E0";
+          div.style.color = "#A2C4E0";
+          div.dataset.cell = arr[m];
+          m++;
+        } else if (element[k] === "x") {
+          let div = document.createElement("div");
+          div.textContent = element[k];
+          div.style.backgroundColor = "#BDC6D9";
+          div.style.color = "#BDC6D9";
+          computerBoard.append(div);
+          div.dataset.cell = arr[m];
+          m++;
+        } else {
+          let div = document.createElement("div");
+          div.textContent = element[k];
+          computerBoard.append(div);
+          div.style.backgroundColor = " #52688f";
+          div.style.color = "#52688f";
+          div.dataset.cell = arr[m];
+          m++;
+        }
       }
     }
   });
@@ -77,7 +118,11 @@ function displayBoard(player, computer) {
 function hover(gameboard, counter) {
   let arr = [];
   let length = counter;
-  console.log(length);
+  if (length < 2) {
+    return;
+  }
+  console.log(length < 2);
+  console.log("Length:", length);
 
   let board = gameboard.board;
   playerBoard.addEventListener("mouseover", (e) => {
