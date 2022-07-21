@@ -8,11 +8,13 @@
 
 body,
 html {
-  height: 100vh;
-}
-.container {
   height: 100%;
+}
+
+.container {
+  min-height: 100%;
   background-color: #e3e7f1;
+  margin-bottom: -50px;
 }
 
 .header-container {
@@ -51,15 +53,18 @@ html {
 }
 
 .divturn {
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 30px;
 }
 
 .btndiv {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
 
 .btn {
@@ -67,4 +72,17 @@ html {
   width: 200px;
   font-size: 20px;
   text-align: center;
+}
+
+.footer {
+  height: 50px;
+  width: 100%;
+  background-color: #bdc6d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer p {
+  color: black;
 }
