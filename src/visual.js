@@ -5,7 +5,6 @@ let computerBoard = document.querySelector(".computerArray");
 let turn = document.querySelector(".turn");
 
 function displayBoard(player, computer) {
-  console.log("Player Board", playerBoard);
   let m = 0;
   let field = [
     ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10"],
@@ -27,7 +26,6 @@ function displayBoard(player, computer) {
     });
   });
 
-  console.log("ARray:", arr);
   playerBoard.textContent = "";
   computerBoard.textContent = "";
 
@@ -110,7 +108,6 @@ function hover(gameboard, counter) {
   if (length < 2) {
     return;
   }
-  console.log(length < 2);
   console.log("Length:", length);
 
   let board = gameboard.board;
@@ -168,7 +165,6 @@ function hover(gameboard, counter) {
     // let cell = cellTarget.dataset.cell;
     // console.log(cell);
   });
-  console.log(length);
 }
 
 export { displayBoard, hover };

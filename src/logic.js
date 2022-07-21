@@ -26,7 +26,6 @@ class ships {
     } else {
       hp--;
     }
-    console.log(hp);
     return hp;
   }
 
@@ -53,7 +52,6 @@ class gameboard {
 
   gameboardPosition(ship, gameboard) {
     let board = gameboard.board;
-    console.log("Board:", board);
     let variable = ship;
 
     let length = variable.length;
@@ -62,66 +60,32 @@ class gameboard {
     let name = variable.name;
 
     let split = start.split("");
-    console.log("Split:", split);
 
     let row = split[0];
     let column = +split[1];
-    console.log(typeof column);
-
-    console.log("Row:", row);
-    console.log("Column:", column);
 
     let finalRow = row.toUpperCase();
     let ans = finalRow.charCodeAt() - 65;
-    console.log("Answer:", ans);
-
-    // if (
-    //   typeof board[ans][column] === "string" &&
-    //   typeof board[ans - 1][column - 1] === "string" &&
-    //   typeof board[ans + 1][column + 1] === "string" &&
-    //   typeof board[ans][column + 1] === "string" &&
-    //   typeof board[ans + 1][column] === "string" &&
-    //   typeof [ans - 1][column] === "string" &&
-    //   board[ans][column - 1] === "string" &&
-    //   typeof board[ans + 1][column - 1] === "string"
-    // ) {
-    //   console.log("this works");
-    // } else {
-    //   console.log("youre wrong!");
-    // }
 
     if (orientation === "vertical") {
       let answer = Number(ans);
 
       for (let i = 0; i < 1; i++) {
-        console.log("I:", i);
         /// vertical
         if (typeof board[answer + i][column] === "string") {
           ////
-          console.log("the coast is clear!");
+
           let counter = ans;
           for (let k = 0; k < length; k++) {
             if (counter === 10) {
               return;
             } else {
-              console.log("Counter:", counter);
               counter++;
             }
-            // try {
-            //   board[j][col - 1] = variable;
-            // } catch (e) {
-            //   console.log("j was bad");
-            //   console.log("J catch:", j);
-            //   console.log(board);
-            //   console.log(board[j]);
-            // }
           }
           for (let m = 0; m < length; m++) {
-            console.log("Length:", length);
-            console.log("M:", m);
             let j = ans;
             let col = Number(column);
-            console.log(col);
 
             try {
               board[j][col - 1] = variable;
@@ -148,8 +112,8 @@ class gameboard {
         if (
           typeof board[+ans][column + i] === "string" &&
           typeof board[ans][column - 2] === "string" &&
-          typeof board[ans - 1][column - 1] === "string" &&
-          typeof board[ans + 1][column - 1] === "string"
+          typeof board[ans - 1][column - 1] === "string" //&&
+          // typeof board[ans + 1][column - 1] === "string"
         ) {
           let counter = column;
           for (let i = 0; i < length; i++) {
@@ -157,7 +121,6 @@ class gameboard {
             if (counter === 11) {
               return;
             } else {
-              console.log("Column:", column);
               counter++;
             }
           }
@@ -187,24 +150,19 @@ class gameboard {
 
     let finalRow = row.toUpperCase();
     let ans = finalRow.charCodeAt() - 65;
-    console.log("Answer", ans);
 
     let coord = gameboard[ans][column - 1];
-    console.log("Coord", coord);
 
     if (typeof coord !== "string") {
-      console.log(coord);
       coord.hit(); /// coord references object and calls hit for hp which deducts hp by 1
       gameboard[ans][column - 1] = "o";
     } else if (coord === "x") {
-      console.log("INVALID CHOICE");
       return "INVALID CHOICE"; /// return invalid choice as this has already been marked before
     } else {
       gameboard[ans][column - 1] = "x";
 
       /// considered this hit as its a valid box and change it to x
     }
-    console.table(gameboard);
     return gameboard;
   }
 
@@ -218,7 +176,6 @@ class gameboard {
       });
     });
     let condition = arr.every((x) => typeof x === "string");
-    console.log(condition);
 
     if (condition === true) {
       return "THE WINNER"; /// figure this out later
@@ -227,8 +184,8 @@ class gameboard {
     }
   }
   computerGenerate() {
-    let row = Math.floor(Math.random() * (10 - 2) + 2);
-    let column = Math.floor(Math.random() * (10 - 2) + 2);
+    let row = Math.floor(Math.random() * (10 - 3) + 3);
+    let column = Math.floor(Math.random() * (10 - 3) + 3);
     let choice = ["horizontal", "vertical"];
     let min = Math.ceil(0);
     let max = Math.max(2);
@@ -236,10 +193,6 @@ class gameboard {
     let orientation = choice[choiceNum];
 
     return { row, column, orientation };
-    console.log("Choice Num:", choiceNum);
-    console.log("Choice:", choice[choiceNum]);
-    console.log("Row", row);
-    console.log("Column", column);
   }
 }
 
@@ -252,13 +205,12 @@ class player {
 
   computerPlay() {
     let arr = this.arr;
-    let row = Math.floor(Math.random() * (10 - 0) + 0);
-    let column = Math.floor(Math.random() * (10 - 0) + 0);
+    let row = Math.floor(Math.random() * (10 - 2) + 0);
+    let column = Math.floor(Math.random() * (10 - 2) + 0);
 
-    console.log("Computer", row);
-    console.log("Computer", column);
     let move = field[row][column];
-    console.log("Move", move);
+    console.log("Computer move:", move);
+    console.log("Computer Array", arr);
 
     if (arr.indexOf(move) !== -1) {
       this.computerPlay();
@@ -266,8 +218,6 @@ class player {
       arr.push(move);
       return move;
     }
-
-    console.log(arr);
   }
 }
 
