@@ -73,11 +73,11 @@ function displayBoard(player, computer) {
   });
 }
 
-function hover(gameboard) {
-  console.log(Array.from(playerBoard.children));
+function hover(gameboard, counter) {
   let arr = [];
+  let length = counter;
+  console.log(length);
 
-  let length = 5;
   let board = gameboard.board;
   playerBoard.addEventListener("mouseover", (e) => {
     arr.forEach((element) => {
@@ -89,18 +89,12 @@ function hover(gameboard) {
     let start = e.target.dataset.cell;
 
     let split = start.split("");
-    console.log("Split:", split);
 
     let row = split[0];
     let column = Number(split[1]);
-    console.log(typeof column);
-
-    console.log("Row:", row);
-    console.log("Column:", column);
 
     let finalRow = row.toUpperCase();
     let ans = finalRow.charCodeAt() - 65;
-    console.log("Answer:", ans);
 
     if (orientation === "vertical") {
       for (let m = 0; m < length; m++) {
@@ -115,7 +109,6 @@ function hover(gameboard) {
             arr.push(i);
           }
         });
-        console.log(arr);
 
         ans++;
       }
@@ -136,11 +129,11 @@ function hover(gameboard) {
         column++;
       }
     }
-
     // let cellTarget = e.target;
     // let cell = cellTarget.dataset.cell;
     // console.log(cell);
   });
+  console.log(length);
 }
 
 export { displayBoard, hover };
