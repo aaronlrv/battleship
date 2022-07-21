@@ -1,3 +1,5 @@
+import { player } from "./logic";
+
 let playerBoard = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
 
@@ -33,9 +35,13 @@ function displayBoard(player, computer) {
         let div = document.createElement("div");
         div.textContent = name;
         playerBoard.append(div);
+        div.style.backgroundColor = "#7391C8";
+        div.style.color = "#7391C8";
       } else {
         let div = document.createElement("div");
         div.textContent = i;
+        div.style.backgroundColor = " #52688f";
+        div.style.color = "#52688f";
         playerBoard.append(div);
       }
     });
@@ -43,7 +49,6 @@ function displayBoard(player, computer) {
   let m = 0;
   computer.forEach((element) => {
     for (let k = 0; k < element.length; k++) {
-      console.log("Element k", element[k]);
       if (typeof element[k] !== "string") {
         let name = element[k].name;
         let div = document.createElement("div");
