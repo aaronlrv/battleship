@@ -122,7 +122,19 @@ function hover(gameboard) {
     }
 
     if (orientation === "horizontal") {
-      /// run horizontal placement function
+      for (let m = 0; m < length; m++) {
+        let j = ans;
+
+        Array.from(playerBoard.children).forEach((i) => {
+          if (i.dataset.cell === board[j][column - 1]) {
+            i.style.backgroundColor = "#F7CB2D";
+            i.style.color = "#F7CB2D";
+
+            arr.push(i);
+          }
+        });
+        column++;
+      }
     }
 
     // let cellTarget = e.target;
