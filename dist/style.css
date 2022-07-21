@@ -27,7 +27,7 @@ html {
   border: 1px solid blue;
   display: grid;
   grid-template-columns: repeat(2, 0.5fr);
-  grid-template-rows: repeat(2, 0.5fr);
+  grid-template-rows: 0.5fr;
 }
 .playerArray,
 .computerArray {
