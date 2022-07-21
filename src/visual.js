@@ -75,41 +75,30 @@ function displayBoard(player, computer) {
   m = 0;
   computer.forEach((element) => {
     for (let k = 0; k < element.length; k++) {
-      if (typeof element[k] !== "string") {
-        let name = element[k].name;
+      if (element[k] === "o") {
         let div = document.createElement("div");
-        div.textContent = name;
+        div.textContent = element[k];
         computerBoard.append(div);
-        div.style.backgroundColor = "#7391C8";
-        div.style.color = "#7391C8";
+        div.style.backgroundColor = " #A2C4E0";
+        div.style.color = "#A2C4E0";
+        div.dataset.cell = arr[m];
+        m++;
+      } else if (element[k] === "x") {
+        let div = document.createElement("div");
+        div.textContent = element[k];
+        div.style.backgroundColor = "#BDC6D9";
+        div.style.color = "#BDC6D9";
+        computerBoard.append(div);
         div.dataset.cell = arr[m];
         m++;
       } else {
-        if (element[k] === "o") {
-          let div = document.createElement("div");
-          div.textContent = element[k];
-          computerBoard.append(div);
-          div.style.backgroundColor = " #A2C4E0";
-          div.style.color = "#A2C4E0";
-          div.dataset.cell = arr[m];
-          m++;
-        } else if (element[k] === "x") {
-          let div = document.createElement("div");
-          div.textContent = element[k];
-          div.style.backgroundColor = "#BDC6D9";
-          div.style.color = "#BDC6D9";
-          computerBoard.append(div);
-          div.dataset.cell = arr[m];
-          m++;
-        } else {
-          let div = document.createElement("div");
-          div.textContent = element[k];
-          computerBoard.append(div);
-          div.style.backgroundColor = " #52688f";
-          div.style.color = "#52688f";
-          div.dataset.cell = arr[m];
-          m++;
-        }
+        let div = document.createElement("div");
+        div.textContent = element[k];
+        computerBoard.append(div);
+        div.style.backgroundColor = " #52688f";
+        div.style.color = "#52688f";
+        div.dataset.cell = arr[m];
+        m++;
       }
     }
   });
