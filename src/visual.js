@@ -53,6 +53,7 @@ function displayBoard(player, computer) {
     });
   });
 
+  m = 0;
   computer.forEach((element) => {
     for (let k = 0; k < element.length; k++) {
       if (typeof element[k] !== "string") {
