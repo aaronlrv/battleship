@@ -12,7 +12,8 @@ let computerGameboard = new logic.gameboard();
 let player = new logic.player("player");
 let computer = new logic.player("computer");
 visual.displayBoard(playerGameboard.board, computerGameboard.board);
-visual.hover(playerGameboard);
+visual.hover(playerGameboard, 5);
+
 btn.addEventListener("click", (e) => {
   if (e.target.textContent === "vertical") {
     btn.textContent = "horizontal";
@@ -29,6 +30,80 @@ playerChoice.addEventListener("click", (e) => {
   let arr = [];
   console.log("Cell:", cell);
   placeShip(cell, orientation);
+});
+
+let counter = 5;
+
+playerChoice.addEventListener("click", () => {
+  counter--;
+  playerChoice.removeEventListener("mouseover", (e) => {
+    arr.forEach((element) => {
+      element.style.backgroundColor = " #52688f";
+      element.style.color = " #52688f";
+    });
+
+    let orientation = document.querySelector(".btn").textContent;
+    let start = e.target.dataset.cell;
+
+    let split = start.split("");
+    console.log("Split:", split);
+
+    let row = split[0];
+    let column = Number(split[1]);
+    console.log(typeof column);
+
+    console.log("Row:", row);
+    console.log("Column:", column);
+
+    let finalRow = row.toUpperCase();
+    let ans = finalRow.charCodeAt() - 65;
+    console.log("Answer:", ans);
+
+    if (orientation === "vertical") {
+      for (let m = 0; m < length; m++) {
+        let j = ans;
+        let col = Number(column);
+
+        Array.from(playerBoard.children).forEach((i) => {
+          if (i.dataset.cell === board[j][col - 1]) {
+            i.style.backgroundColor = "#F7CB2D";
+            i.style.color = "#F7CB2D";
+
+            arr.push(i);
+          }
+        });
+        console.log(arr);
+
+        ans++;
+      }
+    }
+
+    if (orientation === "horizontal") {
+      for (let m = 0; m < length; m++) {
+        let j = ans;
+
+        Array.from(playerBoard.children).forEach((i) => {
+          if (i.dataset.cell === board[j][column - 1]) {
+            i.style.backgroundColor = "#F7CB2D";
+            i.style.color = "#F7CB2D";
+
+            arr.push(i);
+          }
+        });
+        column++;
+      }
+    }
+    // let cellTarget = e.target;
+    // let cell = cellTarget.dataset.cell;
+    // console.log(cell);
+  });
+
+  if (counter < 2) {
+    return;
+  } else {
+    visual.hover(playerGameboard, counter);
+    console.log(counter);
+  }
 });
 /// gameflow begins here
 
