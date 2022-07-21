@@ -4,6 +4,8 @@ let playerBoard = document.querySelector(".playerArray");
 let computerBoard = document.querySelector(".computerArray");
 
 function displayBoard(player, computer) {
+  console.log("Player Board", playerBoard);
+  let m = 0;
   let field = [
     ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10"],
     ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9", "b10"],
@@ -37,16 +39,20 @@ function displayBoard(player, computer) {
         playerBoard.append(div);
         div.style.backgroundColor = "#7391C8";
         div.style.color = "#7391C8";
+        div.dataset.cell = arr[m];
+        m++;
       } else {
         let div = document.createElement("div");
         div.textContent = i;
         div.style.backgroundColor = " #52688f";
         div.style.color = "#52688f";
         playerBoard.append(div);
+        div.dataset.cell = arr[m];
+        m++;
       }
     });
   });
-  let m = 0;
+
   computer.forEach((element) => {
     for (let k = 0; k < element.length; k++) {
       if (typeof element[k] !== "string") {
@@ -67,10 +73,61 @@ function displayBoard(player, computer) {
   });
 }
 
-function hover(length, orientation) {
+function hover(gameboard) {
+  console.log(Array.from(playerBoard.children));
+  let arr = [];
+
+  let length = 5;
+  let board = gameboard.board;
   playerBoard.addEventListener("mouseover", (e) => {
-    e.target.style.backgroundColor = "#F7CB2D";
-    e.target.style.color = "#F7CB2D";
+    arr.forEach((element) => {
+      element.style.backgroundColor = " #52688f";
+      element.style.color = " #52688f";
+    });
+
+    let orientation = document.querySelector(".btn").textContent;
+    let start = e.target.dataset.cell;
+
+    let split = start.split("");
+    console.log("Split:", split);
+
+    let row = split[0];
+    let column = Number(split[1]);
+    console.log(typeof column);
+
+    console.log("Row:", row);
+    console.log("Column:", column);
+
+    let finalRow = row.toUpperCase();
+    let ans = finalRow.charCodeAt() - 65;
+    console.log("Answer:", ans);
+
+    if (orientation === "vertical") {
+      for (let m = 0; m < length; m++) {
+        let j = ans;
+        let col = Number(column);
+
+        Array.from(playerBoard.children).forEach((i) => {
+          if (i.dataset.cell === board[j][col - 1]) {
+            i.style.backgroundColor = "#F7CB2D";
+            i.style.color = "#F7CB2D";
+
+            arr.push(i);
+          }
+        });
+        console.log(arr);
+
+        ans++;
+      }
+    }
+
+    if (orientation === "horizontal") {
+      /// run horizontal placement function
+    }
+
+    // let cellTarget = e.target;
+    // let cell = cellTarget.dataset.cell;
+    // console.log(cell);
   });
 }
 

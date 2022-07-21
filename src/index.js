@@ -12,7 +12,7 @@ let computerGameboard = new logic.gameboard();
 let player = new logic.player("player");
 let computer = new logic.player("computer");
 visual.displayBoard(playerGameboard.board, computerGameboard.board);
-
+visual.hover(playerGameboard);
 btn.addEventListener("click", (e) => {
   if (e.target.textContent === "vertical") {
     btn.textContent = "horizontal";
@@ -30,6 +30,7 @@ playerChoice.addEventListener("click", (e) => {
   console.log("Cell:", cell);
   placeShip(cell, orientation);
 });
+/// gameflow begins here
 
 computerBoard.addEventListener("click", (e) => {
   if (
@@ -46,7 +47,7 @@ computerBoard.addEventListener("click", (e) => {
     console.log("Computer Gameboard", computerGameboard);
 
     if (computerGameboard.allSunk(computerGameboard) === "THE WINNER") {
-      winner.textContent = "Player has won!";
+      turn.textContent = "Player has won!";
       visual.displayBoard(playerGameboard.board, computerGameboard.board);
 
       return;
@@ -59,7 +60,6 @@ computerBoard.addEventListener("click", (e) => {
   }
 });
 
-/// gameflow begins here
 function computerMove() {
   if (turn.textContent === "Player Turn") {
     return;
@@ -68,7 +68,7 @@ function computerMove() {
     playerGameboard.recieveAttack(computerAttack, playerGameboard);
     visual.displayBoard(playerGameboard.board, computerGameboard.board);
     if (playerGameboard.allSunk(playerGameboard) === "THE WINNER") {
-      winner.textContent = "Computer has won!";
+      turn.textContent = "Computer has won!";
       return;
     } else {
       turn.textContent = "Player Turn";
