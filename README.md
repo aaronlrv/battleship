@@ -16,7 +16,8 @@ Approaching this using TDD, Writing tests and going back and forth without using
 
 ## How to play
 
-Use the Github pages environment and view the latest deployment of the project (Note: If it gets stuck on computer turn feel free to refresh the page!) 
+Use the Github pages environment and view the latest deployment of the project or use this live repo link https://aaronlrv.github.io/battleship/
+(Note: If it gets stuck on computer turn feel free to refresh the page!) 
 
 ## Tech/ Framework Used
 <p align="left"> 
